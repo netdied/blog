@@ -86,7 +86,7 @@ public class KaptchaProperties {
 @Configuration
 @ConditionalOnClass(DefaultKaptcha.class)
 @EnableConfigurationProperties(KaptchaProperties.class)
-public class KaptchaConfig implements DisposableBean {
+public class KaptchaConfiguration implements DisposableBean {
 
     private final KaptchaProperties kaptchaProperties;
 
@@ -142,6 +142,11 @@ public class KaptchaConfig implements DisposableBean {
 * @ConditionalOnProperty:指定的属性是否有指定的值  
 * @ConditionalOnResource:类路径下是否有指定的资源  
 * @ConditionalOnSingleCandidate:当指定的Bean在容器中只有一个，或者在有多个Bean的情况下，用来指定首选的Bean @ConditionalOnWebApplication:当前项目是Web项目的条件下  
+## 最后在spring.factories加入自动装配类的位置
+```
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.kapctha.start.config.KaptchaConfiguration
+```
 ## 通过maven install 打包
 即可通过配置application.yml的方式实现kapacha的自动装配
 
